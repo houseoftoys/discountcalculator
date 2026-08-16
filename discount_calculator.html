@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House of Toys - Discount Calculator</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #fff3b0, #b8f2e6, #ffd6e7);
+            padding: 20px;
+        }
+
+        .calculator {
+            width: 400px;
+            background: white;
+            padding: 35px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            border: 5px solid #ffffff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Decorative circles */
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.25;
+        }
+
+        .circle.one {
+            width: 90px;
+            height: 90px;
+            background: #ff6b6b;
+            top: -35px;
+            left: -35px;
+        }
+
+        .circle.two {
+            width: 80px;
+            height: 80px;
+            background: #4dabf7;
+            bottom: -30px;
+            right: -30px;
+        }
+
+        .toys {
+            font-size: 38px;
+            margin-bottom: 8px;
+        }
+
+        h1 {
+            color: #ff4d6d;
+            font-size: 30px;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            color: #555;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin-top: 6px;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 15px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 3px solid #eee;
+            border-radius: 14px;
+            font-size: 16px;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        input:focus {
+            border-color: #4dabf7;
+            box-shadow: 0 0 0 4px rgba(77, 171, 247, 0.15);
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 15px;
+            background: linear-gradient(90deg, #ff4d6d, #ff922b);
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(255, 77, 109, 0.3);
+            transition: 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 9px 20px rgba(255, 77, 109, 0.4);
+        }
+
+        .result {
+            margin-top: 25px;
+            padding: 18px;
+            background: #e8fff5;
+            border-radius: 15px;
+            border: 2px dashed #20c997;
+            color: #087f5b;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #888;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="calculator">
+
+        <div class="circle one"></div>
+        <div class="circle two"></div>
+
+        <div class="toys">🧸 🧩 🚗</div>
+
+        <h1>HOUSE OF TOYS</h1>
+
+        <p class="subtitle">DISCOUNT CALCULATOR</p>
+
+        <div class="input-group">
+            <label for="price">🛍️ Product Price</label>
+            <input 
+                type="number" 
+                id="price" 
+                placeholder="Enter product price"
+            >
+        </div>
+
+        <div class="input-group">
+            <label for="discount">🎁 Discount (%)</label>
+            <input 
+                type="number" 
+                id="discount" 
+                placeholder="Enter discount percentage"
+            >
+        </div>
+
+        <button onclick="calculateDiscount()">
+            🎉 Calculate Discount
+        </button>
+
+        <div class="result" id="result">
+            Final Price: —
+        </div>
+
+        <div class="footer">
+            🧸 Making every toy purchase more fun! 🧸
+        </div>
+
+    </div>
+
+    <script>
+        function calculateDiscount() {
+
+            let price = Number(document.getElementById("price").value);
+            let discount = Number(document.getElementById("discount").value);
+
+            if (price <= 0) {
+                document.getElementById("result").innerText =
+                    "⚠️ The price should be greater than 0";
+                return;
+            }
+
+            if (discount < 0 || discount > 100) {
+                document.getElementById("result").innerText =
+                    "⚠️ Discount should be between 0 and 100";
+                return;
+            }
+
+            let discountAmount = price * discount / 100;
+            let finalPrice = price - discountAmount;
+
+            document.getElementById("result").innerText =
+                "🎉 Final Price: Rs. " + finalPrice.toFixed(2);
+        }
+    </script>
+
+</body>
+</html>
